@@ -1,10 +1,13 @@
-// Auth.js
+'use client';
 import { useState } from "react";
 import { Button, TextField, Box, Typography } from "@mui/material";
 import { auth, googleProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "./firebase";
 import { updateProfile } from "firebase/auth"; 
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 export default function Auth() {
+  const { t } = useTranslation(); // Initialize useTranslation hook
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState(""); // New state for name
@@ -38,23 +41,23 @@ export default function Auth() {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
-      <Typography variant="h6">{isSignUp ? "Sign Up" : "Sign In"}</Typography>
+      <Typography variant="h6">{t(isSignUp ? "Sign Up" : "Sign In")}</Typography>
       {isSignUp && (
         <TextField
-          label="Name"
+          label={t("Name")}
           variant="outlined"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
       )}
       <TextField
-        label="Email"
+        label={t("Email")}
         variant="outlined"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <TextField
-        label="Password"
+        label={t("Password")}
         type="password"
         variant="outlined"
         value={password}
@@ -64,19 +67,19 @@ export default function Auth() {
         variant="contained"
         onClick={handleEmailSignInOrSignUp}
       >
-        {isSignUp ? "Sign Up" : "Sign In"} with Email
+        {t(isSignUp ? "Sign Up with Email" : "Sign In with Email")}
       </Button>
       <Button
         variant="contained"
         onClick={signInWithGoogle}
       >
-        Sign In with Google 
+        {t("Sign In with Google")}
       </Button>
       <Button
         variant="text"
         onClick={() => setIsSignUp(!isSignUp)}
       >
-        {isSignUp ? "Already have an account? Sign In" : "Need an account? Sign Up"}
+        {t(isSignUp ? "Already have an account? Sign In" : "Need an account? Sign Up")}
       </Button>
     </Box>
   );
