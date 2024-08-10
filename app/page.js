@@ -113,7 +113,7 @@ export default function Home() {
 
       {user && (
         <Box padding='10px' display='flex' justifyContent='center'>
-          <Typography variant="h6">{t("Welcome")}, {user.displayName || user.email}!</Typography>
+          <Typography variant="h6">{t("Welcome")}, {user.displayName}!</Typography>
         </Box>
       )}
 
