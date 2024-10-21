@@ -6,7 +6,7 @@ import Groq from 'groq-sdk';
 // POST function to handle incoming requests
 export async function POST(req) {
   const groq = new Groq({
-    apiKey: process.env.NEXT_PUBLIC_API_KEY, 
+    apiKey: process.env.GROQ_API_KEY, 
     dangerouslyAllowBrowser: true
   });
 
